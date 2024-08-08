@@ -22,7 +22,7 @@ def parse_args():
     )
     parser.add_argument(
         "--num-workers",
-        default=0,
+        default=8,
         type=int,
         help="Number of workers used for data loading",
     )
@@ -75,6 +75,7 @@ def parse_args():
     parser.add_argument(
         "--pin-memory",
         action="store_true",
+        default=4,
         help="Should CPU tensors be directly allocated in Pinned memory for data loading",
     )
     parser.add_argument(
@@ -86,7 +87,7 @@ def parse_args():
     parser.add_argument(
         "--seed",
         type=int,
-        default=65,
+        default=42,
         help="Manually set seed for random number generators",
     )
     parser.add_argument(
@@ -135,7 +136,7 @@ def parse_args():
         help="Flag indicating if training is run on polyaxon or not",
     )
     parser.add_argument(
-        "--pbar", dest="pbar", action="store_true", default=False, help="print progress bar"
+        "--pbar", dest="pbar", action="store_true", default=True, help="print progress bar"
     )
 
     # Dataset split settings
@@ -156,7 +157,7 @@ def parse_args():
         "--random-masking",
         dest="random_masking",
         action="store_true",
-        default=False,
+        default=True,
         help="apply random region masking during training",
     )
     parser.add_argument(
@@ -169,7 +170,7 @@ def parse_args():
         "--image-size",
         type=int,
         default=32,
-        choices=[32, 64, 128],
+        choices=[32, 64, 128, 224],
         help="size of input images",
     )
     parser.add_argument(
